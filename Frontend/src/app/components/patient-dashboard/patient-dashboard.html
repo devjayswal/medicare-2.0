@@ -1,0 +1,78 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>Welcome back, {{ patientName }}! 👋</h1>
+    <p>Here's what's happening with your health today</p>
+  </div>
+
+  <div class="quick-stats">
+    <div class="stat-card" *ngFor="let stat of quickStats">
+      <div class="stat-icon">{{ stat.icon }}</div>
+      <div class="stat-content">
+        <h3>{{ stat.value }}</h3>
+        <p>{{ stat.label }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="dashboard-section">
+      <div class="section-header">
+        <h2>Upcoming Appointments</h2>
+        <a routerLink="/patient/book-appointment" class="btn btn-primary">Book New</a>
+      </div>
+      <div class="appointments-list">
+        <div class="appointment-card" *ngFor="let appointment of upcomingAppointments">
+          <div class="appointment-date">
+            <span class="date">{{ appointment.date }}</span>
+            <span class="time">{{ appointment.time }}</span>
+          </div>
+          <div class="appointment-details">
+            <h3>{{ appointment.doctor }}</h3>
+            <p>{{ appointment.department }}</p>
+            <span class="status" [class]="'status-' + appointment.status.toLowerCase()">
+              {{ appointment.status }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <a routerLink="/patient/appointments" class="view-all-link">View All Appointments →</a>
+    </div>
+
+    <div class="dashboard-section">
+      <div class="section-header">
+        <h2>Recent Medical Records</h2>
+      </div>
+      <div class="records-list">
+        <div class="record-item" *ngFor="let record of recentRecords">
+          <div class="record-icon">📄</div>
+          <div class="record-details">
+            <h4>{{ record.type }}</h4>
+            <p>{{ record.doctor }} • {{ record.date }}</p>
+          </div>
+          <span class="record-status">{{ record.status }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <h2>Quick Actions</h2>
+    <div class="actions-grid">
+      <a routerLink="/patient/book-appointment" class="action-card">
+        <div class="action-icon">📅</div>
+        <h3>Book Appointment</h3>
+        <p>Schedule a visit with a doctor</p>
+      </a>
+      <a routerLink="/patient/appointments" class="action-card">
+        <div class="action-icon">📋</div>
+        <h3>View Appointments</h3>
+        <p>Check your appointment history</p>
+      </a>
+      <a routerLink="/patient/profile" class="action-card">
+        <div class="action-icon">👤</div>
+        <h3>Update Profile</h3>
+        <p>Manage your personal information</p>
+      </a>
+    </div>
+  </div>
+</div>

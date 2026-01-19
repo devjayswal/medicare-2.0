@@ -1,0 +1,44 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to Eastencher</h1>
+    <p class="hero-subtitle">Modern Hospital Management System</p>
+    <p class="hero-description">Streamline your healthcare operations with our comprehensive management solution</p>
+    <div class="cta-buttons">
+      <a routerLink="/patients/login" class="btn btn-primary">Patient Portal</a>
+      <a routerLink="/admin/login" class="btn btn-secondary">Admin Access</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h2>Key Features</h2>
+    <div class="features-grid">
+      <div class="feature-card" *ngFor="let feature of features">
+        <div class="feature-icon">{{ feature.icon }}</div>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="stats">
+    <div class="stat-card">
+      <h3>1000+</h3>
+      <p>Patients Served</p>
+    </div>
+    <div class="stat-card">
+      <h3>50+</h3>
+      <p>Healthcare Professionals</p>
+    </div>
+    <div class="stat-card">
+      <h3>24/7</h3>
+      <p>Support Available</p>
+    </div>
+    <div class="stat-card">
+      <h3>99.9%</h3>
+      <p>Uptime</p>
+    </div>
+  </section>
+</div>

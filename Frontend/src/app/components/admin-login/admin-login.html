@@ -1,0 +1,56 @@
+<div class="admin-login-container">
+  <div class="admin-login-card">
+    <div class="admin-header">
+      <div class="admin-icon">🔐</div>
+      <h2>Admin Portal</h2>
+      <p>Secure access for hospital administrators</p>
+    </div>
+
+    <div class="alert alert-error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="alert alert-success" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
+
+    <form (ngSubmit)="onLogin()" class="admin-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          [(ngModel)]="loginData.email" 
+          name="email"
+          placeholder="Enter admin email"
+          [disabled]="isLoading"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          [(ngModel)]="loginData.password" 
+          name="password"
+          placeholder="Enter admin password"
+          [disabled]="isLoading"
+          required>
+      </div>
+
+      <button type="submit" class="btn btn-admin btn-block" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Login to Admin Panel</span>
+        <span *ngIf="isLoading">Authenticating...</span>
+      </button>
+    </form>
+
+    <div class="back-home">
+      <a routerLink="/" class="link">← Back to Home</a>
+    </div>
+  </div>
+
+  <div class="security-note">
+    <p>🔒 This is a secure admin area. All login attempts are monitored and logged.</p>
+  </div>
+</div>

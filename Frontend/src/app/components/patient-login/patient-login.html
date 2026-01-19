@@ -1,0 +1,137 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>{{ isLogin ? 'Patient Login' : 'Patient Registration' }}</h2>
+      <p>{{ isLogin ? 'Access your medical records and appointments' : 'Create your patient account' }}</p>
+    </div>
+
+    <div class="alert alert-error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="alert alert-success" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
+
+    <!-- Login Form -->
+    <form *ngIf="isLogin" (ngSubmit)="onLogin()" class="login-form">
+      <div class="form-group">
+        <label for="mobile">Mobile Number</label>
+        <input 
+          type="tel" 
+          id="mobile" 
+          [(ngModel)]="loginData.mobile" 
+          name="mobile"
+          placeholder="Enter your mobile number"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          [(ngModel)]="loginData.password" 
+          name="password"
+          placeholder="Enter your password"
+          required>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="loading">{{ loading ? 'Logging in...' : 'Login' }}</button>
+
+      <div class="form-footer">
+        <p>Don't have an account? <a href="#" (click)="toggleMode(); $event.preventDefault()" class="link">Register here</a></p>
+      </div>
+    </form>
+
+    <!-- Registration Form -->
+    <form *ngIf="!isLogin" (ngSubmit)="onRegister()" class="login-form">
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input 
+          type="text" 
+          id="fullName" 
+          [(ngModel)]="registerData.fullName" 
+          name="fullName"
+          placeholder="Enter your full name"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="regEmail">Email Address *</label>
+        <input 
+          type="email" 
+          id="regEmail" 
+          [(ngModel)]="registerData.email" 
+          name="email"
+          placeholder="Enter your email"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Mobile Number *</label>
+        <input 
+          type="tel" 
+          id="phone" 
+          [(ngModel)]="registerData.mobile" 
+          name="mobile"
+          placeholder="Enter your mobile number"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select 
+          id="gender" 
+          [(ngModel)]="registerData.gender" 
+          name="gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input 
+          type="date" 
+          id="dob" 
+          [(ngModel)]="registerData.dateOfBirth" 
+          name="dateOfBirth">
+      </div>
+
+      <div class="form-group">
+        <label for="regPassword">Password *</label>
+        <input 
+          type="password" 
+          id="regPassword" 
+          [(ngModel)]="registerData.password" 
+          name="password"
+          placeholder="Create a password (min 6 characters)"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password *</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          [(ngModel)]="registerData.confirmPassword" 
+          name="confirmPassword"
+          placeholder="Confirm your password"
+          required>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="loading">{{ loading ? 'Registering...' : 'Register' }}</button>
+
+      <div class="toggle-mode">
+        <p>
+          Already have an account? <a href="#" (click)="toggleMode(); $event.preventDefault()" class="link">Login here</a>
+        </p>
+      </div>
+
+    <div class="back-home">
+      <a routerLink="/" class="link">← Back to Home</a>
+    </div>
+ 
+

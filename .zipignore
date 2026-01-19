@@ -1,0 +1,34 @@
+# Directories to exclude from zip (at ANY level in project)
+**/node_modules/
+**/dist/
+**/.angular/
+**/.git/
+**/coverage/
+**/.vscode/
+**/.idea/
+**/build/
+**/.next/
+**/out/
+**/.cache/
+**/tmp/
+**/.temp/
+
+# Build outputs
+**/dist-server/
+**/www/
+
+# Files to exclude
+*.zip
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+package-lock.json.backup
+yarn.lock.backup
+
+# Environment files (optional - uncomment if needed)
+# .env
+# .env.local
+# .env.*.local

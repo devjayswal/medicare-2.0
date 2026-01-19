@@ -1,0 +1,41 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+      <a routerLink="/" class="brand-link">
+        <h3>🏥 Eastencher</h3>
+        <p class="navbar-subtitle">Hospital Management System</p>
+      </a>
+    </div>
+    
+    <!-- Not Logged In -->
+    <div class="navbar-links" *ngIf="!isLoggedIn">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Home</a>
+      <a routerLink="/patients/login" routerLinkActive="active" class="nav-link">Patient Login</a>
+      <a routerLink="/admin/login" routerLinkActive="active" class="nav-link">Admin</a>
+    </div>
+
+    <!-- Patient Logged In -->
+    <div class="navbar-links" *ngIf="isPatient">
+      <a routerLink="/patient/dashboard" routerLinkActive="active" class="nav-link">Dashboard</a>
+      <a routerLink="/patient/book-appointment" routerLinkActive="active" class="nav-link">Book Appointment</a>
+      <a routerLink="/patient/appointments" routerLinkActive="active" class="nav-link">My Appointments</a>
+      <a routerLink="/patient/profile" routerLinkActive="active" class="nav-link">Profile</a>
+      <div class="user-menu">
+        <span class="user-name">{{ userName }}</span>
+        <button (click)="logout()" class="btn-logout">Logout</button>
+      </div>
+    </div>
+
+    <!-- Admin Logged In -->
+    <div class="navbar-links" *ngIf="isAdmin">
+      <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-link">Dashboard</a>
+      <a routerLink="/admin/patients" routerLinkActive="active" class="nav-link">Patients</a>
+      <a routerLink="/admin/appointments" routerLinkActive="active" class="nav-link">Appointments</a>
+      <a routerLink="/admin/doctors" routerLinkActive="active" class="nav-link">Doctors</a>
+      <div class="user-menu">
+        <span class="user-name">{{ userName }}</span>
+        <button (click)="logout()" class="btn-logout">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>

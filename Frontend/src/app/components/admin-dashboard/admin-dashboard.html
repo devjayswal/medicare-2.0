@@ -1,0 +1,88 @@
+<div class="admin-dashboard">
+  <h1>Admin Dashboard</h1>
+  
+  <div class="stats-grid">
+    <div class="stat-card" *ngFor="let stat of stats" [style.border-color]="stat.color">
+      <div class="stat-icon">{{ stat.icon }}</div>
+      <div class="stat-content">
+        <h2 [style.color]="stat.color">{{ stat.value }}</h2>
+        <p>{{ stat.label }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="recent-section">
+    <h2>Recent Appointments</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of recentAppointments">
+            <td>{{ appointment.patient }}</td>
+            <td>{{ appointment.doctor }}</td>
+            <td>{{ appointment.time }}</td>
+            <td><span class="status" [class]="'status-' + appointment.status.toLowerCase()">{{ appointment.status }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="filters">
+    <label>Filter by Status:</label>
+    <select [(ngModel)]="filterStatus" (change)="onFilterChange()">
+      <option value="">All</option>
+      <option value="BOOKED">Booked</option>
+      <option value="COMPLETED">Completed</option>
+      <option value="CANCELLED">Cancelled</option>
+      <option value="NO_SHOW">No Show</option>
+    </select>
+  </div>
+
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div class="appointments-table" *ngIf="!loading && !error">
+    <table>
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Doctor</th>
+          <th>Date & Time</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appointment of appointments">
+          <td>{{ appointment.Patient?.fullName }}</td>
+          <td>{{ appointment.Doctor?.fullName }}</td>
+          <td>{{ appointment.appointmentAt | date:'medium' }}</td>
+          <td><span [class]="'status-' + appointment.status">{{ appointment.status }}</span></td>
+          <td>
+            <select (change)="updateStatus(appointment.id, $any($event.target).value)">
+              <option value="">Change Status</option>
+              <option value="BOOKED">Booked</option>
+              <option value="COMPLETED">Completed</option>
+              <option value="CANCELLED">Cancelled</option>
+              <option value="NO_SHOW">No Show</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination" *ngIf="pageCount > 1">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ pageCount }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === pageCount">Next</button>
+    </div>
+  </div>
+</div>

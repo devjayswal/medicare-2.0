@@ -1,0 +1,83 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <h1>My Profile</h1>
+    <button class="btn btn-primary" (click)="toggleEdit()" *ngIf="!isEditing">Edit Profile</button>
+  </div>
+
+  <div class="alert alert-success" *ngIf="successMessage">{{ successMessage }}</div>
+  <div class="alert alert-error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <div class="profile-card">
+    <form (ngSubmit)="onSave()" class="profile-form">
+      <div class="form-section">
+        <h2>Personal Information</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" [(ngModel)]="profileData.fullName" name="fullName" 
+                   [disabled]="!isEditing" required>
+          </div>
+
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" [(ngModel)]="profileData.email" name="email" 
+                   [disabled]="!isEditing" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" [(ngModel)]="profileData.phone" name="phone" 
+                   [disabled]="!isEditing" required>
+          </div>
+
+          <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" [(ngModel)]="profileData.dateOfBirth" name="dateOfBirth" 
+                   [disabled]="!isEditing">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Address</label>
+          <textarea [(ngModel)]="profileData.address" name="address" rows="3" 
+                    [disabled]="!isEditing"></textarea>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2>Medical Information</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Blood Group</label>
+            <select [(ngModel)]="profileData.bloodGroup" name="bloodGroup" [disabled]="!isEditing">
+              <option value="">Select</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Emergency Contact</label>
+            <input type="tel" [(ngModel)]="profileData.emergencyContact" name="emergencyContact" 
+                   [disabled]="!isEditing">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions" *ngIf="isEditing">
+        <button type="button" class="btn btn-secondary" (click)="toggleEdit()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
