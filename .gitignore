@@ -1,11 +1,15 @@
 # Backend (.NET)
 Backend/bin/
 Backend/obj/
+Backend/appsettings.json
 Backend/appsettings.Development.json
+Backend/appsettings.*.json
 *.user
 *.suo
 *.cache
 *.log
+secrets.json
+.secrets/
 
 # Frontend (Angular)
 Frontend/node_modules/
