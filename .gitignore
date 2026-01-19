@@ -15,6 +15,11 @@ Frontend/.vscode/
 *.log
 *.lock
 
+# Node.js (global)
+# Ignore node_modules at root and in all subfolders
+node_modules/
+**/node_modules/
+
 # Environment files
 .env
 .env.local
